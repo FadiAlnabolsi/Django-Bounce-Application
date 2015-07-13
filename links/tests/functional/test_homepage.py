@@ -1,3 +1,4 @@
+from bounce.settings import BASE_DIR
 from links.tests.functional.base import FunctionalTest
 
 class HomepageTest(FunctionalTest):
@@ -21,6 +22,9 @@ class HomepageTest(FunctionalTest):
         for link in links:
         	self.assertTrue(link.get_attribute("href"))
         	self.assertTrue(link.text)
+
+    def test_homepage_stylesheet(self):
+        pass
 
 class HomepageLargeTest(FunctionalTest):
     fixtures = ['data-large.json']
