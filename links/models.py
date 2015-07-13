@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from urllib.parse import urlparse
 # Create your models here.
 
 class Link(models.Model):
@@ -9,5 +9,7 @@ class Link(models.Model):
 	submitted_by = models.ForeignKey(User)
 	submitted = models.DateTimeField(auto_now_add=True)
 
-	def __str__(self):
-		return self.title
+	@property
+	def domain(self):
+	    return urlparse(self.url).netloc
+	

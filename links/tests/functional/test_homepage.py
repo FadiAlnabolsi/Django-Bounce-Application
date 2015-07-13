@@ -27,9 +27,16 @@ class HomepageSmallTest(FunctionalTest):
         username = self.browser.find_element_by_css_selector('.link span.submitted-by')
         self.assertEqual(username.text, "falnabol")
 
+        #he notices that the first link was submitted some time ago
+        time_ago = self.browser.find_element_by_css_selector('.link span.submitted-at').text
+        self.assertTrue(time_ago.replace('ago', ''))
+
+        #he notices that the first link is from http://gfycat.com/LegalMemorableFlies
+        domain = self.browser.find_element_by_css_selector('.link small.link-domain').text
+        self.assertEqual(domain, "imgur.com")
+
     def test_homepage_stylesheet(self):
         pass
-
 
 
 class HomepageLargeTest(FunctionalTest):
