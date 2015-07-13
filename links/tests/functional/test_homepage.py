@@ -4,6 +4,9 @@ from selenium import webdriver
 
 class HomepageTest(StaticLiveServerTestCase):
 	#Charlie opens his web browser and goes to the Bounce homepage
+
+    fixtures = ['data-small.json']
+
     def setUp(self):
         self.browser = webdriver.Firefox()
 
