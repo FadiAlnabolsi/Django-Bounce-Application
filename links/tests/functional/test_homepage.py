@@ -1,11 +1,11 @@
 from bounce.settings import BASE_DIR
 from links.tests.functional.base import FunctionalTest
 
-class HomepageTest(FunctionalTest):
-    fixtures = ['data-small.json']
+class HomepageSmallTest(FunctionalTest):
+    fixtures = ['data-small.json', 'users.json']
 
 	#Charlie opens his web browser and goes to the Bounce homepage
-    def test_homepage_layout(self):
+    def test_small_homepage_layout(self):
         # Charlie opens his web browser and goes to the Bounce homepage
         ###self.browser.get('http://localhost:8000')
         self.browser.get(self.live_server_url)
@@ -23,11 +23,17 @@ class HomepageTest(FunctionalTest):
         	self.assertTrue(link.get_attribute("href"))
         	self.assertTrue(link.text)
 
+        # He notices that the first link was submitted by [your username]
+        username = self.browser.find_element_by_css_selector('.link span.submitted-by')
+        self.assertEqual(username.text, "falnabol")
+
     def test_homepage_stylesheet(self):
         pass
 
+
+
 class HomepageLargeTest(FunctionalTest):
-    fixtures = ['data-large.json']
+    fixtures = ['data-large.json', 'users.json']
 
     def test_large_homepage_layout(self):
 

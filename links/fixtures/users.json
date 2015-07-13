@@ -1,0 +1,20 @@
+[
+{
+    "model": "auth.user",
+    "fields": {
+        "user_permissions": [],
+        "is_active": true,
+        "last_name": "",
+        "is_superuser": true,
+        "password": "pbkdf2_sha256$20000$9A98oSxcSxTY$baJ3SwfWalNwLA90aoIkyLoEE7MmxTpv9BYQHUqlOr4=",
+        "email": "FadiAlnabolsi@gmail.com",
+        "username": "falnabol",
+        "first_name": "",
+        "is_staff": true,
+        "date_joined": "2015-07-13T18:02:58.030Z",
+        "groups": [],
+        "last_login": "2015-07-13T18:03:06.414Z"
+    },
+    "pk": 1
+}
+]
