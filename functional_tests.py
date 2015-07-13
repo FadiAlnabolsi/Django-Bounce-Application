@@ -1,7 +1,22 @@
+import unittest
 from selenium import webdriver
 
-browser = webdriver.Firefox()
-browser.get('http://localhost:8000')
-page_body = browser.find_element_by_tag_name('body')
+class HomepageTest(unittest.TestCase):
+	#Charlie opens his web browser and goes to the Bounce homepage
+    def setUp(self):
+        self.browser = webdriver.Firefox()
 
-assert 'It worked!' in page_body.text
+    def tearDown(self):
+        self.browser.quit()
+
+    def test_homepage_layout(self):
+        # Charlie opens his web browser and goes to the Bounce homepage
+        self.browser.get('http://localhost:8000')
+
+        # He sees fifteen interesting links to check out
+        links = self.browser.find_elements_by_css_selector('li.link a')
+        self.assertEqual(len(links), 15)
+
+
+if __name__ == '__main__':
+	unittest.main(warnings='ignore')
