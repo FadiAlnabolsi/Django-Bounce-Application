@@ -2,6 +2,7 @@ from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.core.urlresolvers import reverse
 from selenium import webdriver
 from bounce.settings import BASE_DIR
+import time
 
 class FunctionalTest(StaticLiveServerTestCase):
 
@@ -21,3 +22,13 @@ class FunctionalTest(StaticLiveServerTestCase):
 			actual_css = css_file.read().strip()
 
 		self.assertEqual(css_used, actual_css)
+
+	def click_wait(self, element, seconds=.5):
+		element.click()
+		time.sleep(seconds)
+
+	def login(self, username, password):
+		self.browser.find_element_by_id('id_username').send_keys(username)
+		self.browser.find_element_by_id('id_password').send_keys(password)
+		login_button = self.browser.find_element_by_id('submit')
+		self.click_wait(login_button)
