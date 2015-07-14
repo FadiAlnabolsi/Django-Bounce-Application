@@ -45,6 +45,26 @@ class AuthenticationTest(FunctionalTest):
 		self.assertNotIn('test_user', header_text)
 		self.assertIn('Login', header_text)
 
+	def test_user_cant_login_and_returns_to_homepage(self):
+		# Bo wants to login to Bounce
+		self.browser.get(self.live_server_url + '/login')
+
+		# He enters an invalid username and password and clicks the 'login' button
+		self.browser.find_element_by_id('id_username').send_keys('invalid_user')
+		self.browser.find_element_by_id('id_password').send_keys('inavlid_password')
+		login_button = self.browser.find_element_by_id('submit')
+		login_button.click()
+		time.sleep(5)
+
+		#the login form responds with an error message
+		error_message = self.browser.find_element_by_css_selector('p.error').text
+		self.assertIn("Your username and password didn't match.", error_message)
+
+		#Bo can't remember his login info and decides to just browse without logging in
+		home_link = self.browser.find_element_by_css_selector('header>h1>a')
+		home_link.click()
+		time.sleep(5)
+		self.assertEqual(self.browser.current_url, self.live_server_url + '/')
 
 
 
