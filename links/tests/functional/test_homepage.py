@@ -1,4 +1,3 @@
-from bounce.settings import BASE_DIR
 from links.tests.functional.base import FunctionalTest
 
 class HomepageSmallTest(FunctionalTest):
@@ -34,10 +33,6 @@ class HomepageSmallTest(FunctionalTest):
         #he notices that the first link is from http://gfycat.com/LegalMemorableFlies
         domain = self.browser.find_element_by_css_selector('.link small.link-domain').text
         self.assertEqual(domain, "imgur.com")
-
-    def test_homepage_stylesheet(self):
-        pass
-
 
 class HomepageLargeTest(FunctionalTest):
     fixtures = ['data-large.json', 'users.json']

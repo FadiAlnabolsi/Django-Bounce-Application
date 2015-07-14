@@ -1,27 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8"> 
-		<title>Bounce</title>
-		<link rel="stylesheet" href="/static/css/main.css">
-	</head>
-	
-<body>
-	<header>
-		<h1>Bounce</h1>
-		<nav>
-			<ul>
-				{% if user.is_authenticated %}
-					<li>{{ user }}</li>
-					<li><a href="/logout" id="logout">Logout</a></li>
-				{% else %}
-				<li><a href="/login" id="login">Login</a></li>
-				{% endif %}
-			</ul>
-		</nav>
-	</header>
-	<ul id="links">
-		{% for link in links %}
+{% extends 'base.html' %}
+
+{% block nav %}
+<nav>
+	<ul>
+		{% if user.is_authenticated %}
+		<li>{{ user }}</li>
+		<li><a href="/logout" id="logout">Logout</a></li>
+		{% else %}
+		<li><a href="/login" id="login">Login</a></li>
+		{% endif %}
+	</ul>
+</nav>
+{% endblock nav %}
+
+{% block content %}
+<ul id="links">
+	{% for link in links %}
 		<li class="link">
 			<a href="{{ link.url }}"> {{ link.title }}</a>
 			<small class="link-domain">{{ link.domain }}</small>
@@ -30,9 +24,8 @@
 				<span class="submitted-at">{{ link.submitted|timesince }} ago</span>
 			</div>
 		</li>
-		{% empty %}
+	{% empty %}
 		<p id="no-links">Sorry, no links have been posted.</p>
-		{% endfor %}
-	</ul>
-</body>
-</html>
+	{% endfor %}
+</ul>
+{% endblock content %}

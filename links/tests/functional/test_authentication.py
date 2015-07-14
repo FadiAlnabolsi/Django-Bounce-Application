@@ -14,6 +14,9 @@ class AuthenticationTest(FunctionalTest):
 		login_link.click()
 		time.sleep(5)
 
+		# He notices the browser title change
+		self.assertEqual(self.browser.title, 'Bounce | Login')
+
 		# he enters his username and password and clicks the 'Login' submission button
 		self.browser.find_element_by_id('id_username').send_keys('test_user')
 		self.browser.find_element_by_id('id_password').send_keys('test_password')
@@ -42,7 +45,6 @@ class AuthenticationTest(FunctionalTest):
 		self.assertNotIn('test_user', header_text)
 		self.assertIn('Login', header_text)
 
-		self.fail('Finish the auth test!')
 
 
 
